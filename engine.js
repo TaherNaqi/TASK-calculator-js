@@ -4,7 +4,6 @@
  * You pass it a text, and it prints it
  */
 function printOnConsole(text) {
-  console.log(text);
   document.getElementById("console").innerText = `${text}`;
 }
 

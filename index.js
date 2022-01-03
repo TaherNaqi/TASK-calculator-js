@@ -7,9 +7,43 @@
  * If you click on button +, the text will be "+"
  * ,... and so on
  */
+let num1;
+let num2;
+let operation;
+let result;
+let history = [];
 function buttonClick(text) {
   console.log("Clicking", text);
   // Write your code here
+  if (text == "+" || text == "-" || text == "÷" || text == "x") {
+    operation = text;
+  } else if (text === "AC") {
+    printOnConsole(0);
+    num1 = 0;
+    num2 = 0;
+  } else if (!isNaN(text)) {
+    printOnConsole(text);
+    if (!num1) num1 = parseInt(text);
+    else if (operation) num2 = parseInt(text);
+  } else if (text == "=") {
+    result = calculate(operation, num1, num2);
+    printOnConsole(result);
+    history.push(`${num1} ${operation} ${num2} = ${result}`);
+    updateHistory(history);
+  }
+}
+//updateHistory([`${num1} ${operation} ${num2} = ${result}`]);
+
+function calculate(operation, num1, num2) {
+  if (operation == "+") {
+    return num1 + num2;
+  } else if (operation == "-") {
+    return num1 - num2;
+  } else if (operation == "÷") {
+    return num1 / num2;
+  } else if (operation == "x") {
+    return num1 * num2;
+  }
 }
 
 /** Supporting functions
@@ -18,5 +52,4 @@ function buttonClick(text) {
  */
 
 // Remove Me after testing
-printOnConsole("123");
-updateHistory(["This is a sample historry", "1 + 5 = 6", "5 x 10 = 50"]);
+// printOnConsole("123");
